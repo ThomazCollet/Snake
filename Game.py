@@ -1,7 +1,7 @@
 import pygame as pg
 from Snake import Snake
 from Food import Food
-from Menu import *
+from GameOverScreen import GameOverScreen
 
 class Game:
     def __init__(self, screen):
@@ -35,7 +35,8 @@ class Game:
 
             for event in pg.event.get():
                 if event.type == pg.QUIT:
-                    game_over = True
+                    pg.quit()
+                    quit()
                 elif event.type == pg.KEYDOWN:
                     self.snake.handle_input(event.key)
 
@@ -64,3 +65,11 @@ class Game:
 
             pg.display.update()
             self.clock.tick(self.game_speed)
+
+        game_over_screen = GameOverScreen(self.screen, self.score)
+        choice = game_over_screen.run()
+
+        if choice == "JOGAR NOVAMENTE":
+            return "RESTART"
+        elif choice == "MENU PRINCIPAL":
+            return "MENU"

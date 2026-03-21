@@ -7,15 +7,23 @@ def main():
 
     screen = pygame.display.set_mode((1100, 600))
 
-    menu = Menu(screen)
-    choice = menu.run()
+    while True:
+        menu = Menu(screen)
+        choice = menu.run()
 
-    if choice == "JOGAR":
-        game = Game(screen)
-        game.run()
+        if choice == "JOGAR":
+            while True:
+                game = Game(screen)
+                result = game.run()
 
-    elif choice == "SAIR":
-        pygame.quit()
-        quit()
+                if result == "RESTART":
+                    continue  # reinicia o jogo
+
+                elif result == "MENU":
+                    break  # volta pro menu
+
+        elif choice == "SAIR":
+            pygame.quit()
+            quit()
 if __name__ == "__main__":
     main()
