@@ -4,13 +4,12 @@ from Food import Food
 from Menu import *
 
 class Game:
-    def __init__(self):
-        pg.init()
+    def __init__(self, screen):
 
         self.width = 800
         self.height = 600
 
-        self.screen = pg.display.set_mode((self.width, self.height))
+        self.screen = screen
         pg.display.set_caption("Snake Game")
 
         self.square_size = 10
@@ -31,9 +30,6 @@ class Game:
         game_over = False
 
         while not game_over:
-            menu = Menu(self.screen)
-            menu.run()
-            pass
 
             self.screen.fill((0, 0, 0))
 
