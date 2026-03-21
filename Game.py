@@ -1,6 +1,7 @@
 import pygame as pg
 from Snake import Snake
 from Food import Food
+from Menu import *
 
 class Game:
     def __init__(self):
@@ -30,6 +31,10 @@ class Game:
         game_over = False
 
         while not game_over:
+            menu = Menu(self.screen)
+            menu.run()
+            pass
+
             self.screen.fill((0, 0, 0))
 
             for event in pg.event.get():
