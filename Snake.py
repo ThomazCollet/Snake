@@ -5,8 +5,8 @@ class Snake:
     def __init__(self, width, height, square_size):
         self.square_size = square_size
 
-        self.x = width // 2
-        self.y = height // 2
+        self.x = (width // self.square_size // 2) * self.square_size
+        self.y = (height // self.square_size // 2) * self.square_size
 
         self.x_speed = 0
         self.y_speed = 0
@@ -55,12 +55,15 @@ class Snake:
         if len(self.pixels) > self.length:
             del self.pixels[0]
 
-    def draw(self, screen):
+    def draw(self, screen, offset_x=0, offset_y=0):
         for i, pixel in enumerate(self.pixels):
             if i == len(self.pixels) - 1:
-                color = (0, 255, 150)  # cabeça
+                color = (0, 255, 150)
             else:
-                color = (0, 200, 80)  # corpo
+                color = (0, 200, 80)
 
-            pg.draw.rect(screen, color,
-                         (pixel[0], pixel[1], self.square_size, self.square_size))
+            pg.draw.rect(
+                screen,
+                color,
+                (pixel[0] + offset_x, pixel[1] + offset_y, self.square_size, self.square_size)
+            )
