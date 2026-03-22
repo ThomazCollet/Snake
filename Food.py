@@ -17,4 +17,4 @@ class Food:
         self.x, self.y = self.generate_position()
 
     def draw(self, screen):
-        pg.draw.rect(screen, (255, 255, 255), (self.x, self.y, self.square_size, self.square_size))
+        pg.draw.rect(screen, (255, 59, 48), (self.x, self.y, self.square_size, self.square_size))
