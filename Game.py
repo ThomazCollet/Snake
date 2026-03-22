@@ -19,6 +19,9 @@ class Game:
         self.snake = Snake(self.width, self.height, self.square_size)
         self.food = Food(self.width, self.height, self.square_size)
 
+        self.eat_sound = pg.mixer.Sound("assets/sounds/eat_sound.ogg")
+        self.game_over_sound = pg.mixer.Sound("assets/sounds/game_over_sound.ogg")
+
         self.score = 0
 
     def draw_score(self):
@@ -45,11 +48,15 @@ class Game:
 
             # colisão com o próprio corpo
             if self.snake.check_self_collision():
+                self.game_over_sound.play()
+                pg.time.delay(500)  # pequeno delay pra ouvir o som
                 game_over = True
 
             # colisão com parede
             if (self.snake.x < 0 or self.snake.x >= self.width or
                 self.snake.y < 0 or self.snake.y >= self.height):
+                self.game_over_sound.play()
+                pg.time.delay(500)  # pequeno delay pra ouvir o som
                 game_over = True
 
             # comer comida
@@ -57,6 +64,8 @@ class Game:
                 self.snake.length += 1
                 self.food.respawn()
                 self.score += 50
+
+                self.eat_sound.play()
 
             # desenhar
             self.snake.draw(self.screen)

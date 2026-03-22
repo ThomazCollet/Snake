@@ -15,6 +15,7 @@ class GameOverScreen:
         self.small_font = pygame.font.SysFont("Arial", 25)
         self.score_font = pygame.font.SysFont("Arial", 60, bold=True)
 
+
     def draw_text(self, text, font, color, center):
         surface = font.render(text, True, color)
         rect = surface.get_rect(center=center)
